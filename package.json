@@ -1,0 +1,28 @@
+{
+    "name": "booking",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon server/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VentsiGeorgiev/booking.git"
+    },
+    "author": "VG",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/VentsiGeorgiev/booking/issues"
+    },
+    "homepage": "https://github.com/VentsiGeorgiev/booking#readme",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mongoose": "^6.7.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
+}
