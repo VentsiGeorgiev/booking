@@ -10,3 +10,31 @@ body {
     max-width: 1920px;
     margin: 0 auto;
 }
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a {
+    color: $white;
+}
+
+// # Button
+.btn {
+    cursor: pointer;
+    border: transparent;
+    padding: 0.3rem 0.7rem;
+    text-transform: capitalize;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.btn-secondary {
+    background-color: $white;
+    color: $primary-light;
+}
