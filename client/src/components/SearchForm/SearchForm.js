@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import FormModal from '../FormModal/FormModal';
 import styles from './SearchForm.module.scss';
 
 
 function SearchForm() {
+
+    const { width } = useWindowDimensions();
 
     const [destination, setDestination] = useState('');
     const [checkInDate, setCheckInDate] = useState('');
@@ -46,16 +49,18 @@ function SearchForm() {
     return (
         <section className={`${styles['form-container']}`}>
             <div className='container'>
-                <h2 className={styles.form__title}>Search</h2>
-                <p className={styles.form__text}>Destinations, properties, even an address</p>
+                {width < 640 && <>
+                    <h2 className={styles.form__title}>Search</h2>
+                    <p className={styles.form__text}>Destinations, properties, even an address</p>
+                </>}
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <div className={styles.from__row}>
-                        <label
+                    <div className={styles.form__row}>
+                        {width < 640 && <label
                             htmlFor="destination"
                             className={styles.form__label}
                         >
                             Destination
-                        </label>
+                        </label>}
                         <input
                             type="search"
                             id='destination'
@@ -66,13 +71,13 @@ function SearchForm() {
                         />
                     </div>
                     <div className={styles.form__wrapper}>
-                        <div className={styles.from__row}>
-                            <label
+                        <div className={styles.form__row}>
+                            {width < 640 && <label
                                 htmlFor="check-in"
                                 className={styles.form__label}
                             >
                                 Check-In
-                            </label>
+                            </label>}
                             <input
                                 id='check-in'
                                 type="date"
@@ -81,13 +86,13 @@ function SearchForm() {
                                 onChange={(e) => setCheckInDate(e.target.value)}
                             />
                         </div>
-                        <div className={styles.from__row}>
-                            <label
+                        <div className={styles.form__row}>
+                            {width < 640 && <label
                                 htmlFor="check-out"
                                 className={styles.form__label}
                             >
                                 Check-Out
-                            </label>
+                            </label>}
                             <input
                                 type="date"
                                 className={styles.form__input}
@@ -99,7 +104,6 @@ function SearchForm() {
                     <div
                         onClick={toggleModal}
                         className={styles.form__container}>
-
                         <div>
                             <p>Adults</p>
                             <p>{adults}</p>

@@ -10,6 +10,7 @@ function FormModal({ adults, children, rooms, toggleModal, handleOptions }) {
                         <button
                             className='btn btn-secondary'
                             onClick={() => handleOptions('adults', 'decrement')}
+                            disabled={adults <= 1}
                         >
                             -
                         </button>
@@ -23,11 +24,12 @@ function FormModal({ adults, children, rooms, toggleModal, handleOptions }) {
                     </div>
                 </div>
                 <div className={styles.form__modal__row}>
-                    <p>children</p>
+                    <p>Children</p>
                     <div className={styles.form__modal__buttons}>
                         <button
                             onClick={() => handleOptions('children', 'decrement')}
                             className='btn btn-secondary'
+                            disabled={children <= 0}
                         >
                             -
                         </button>
@@ -41,11 +43,12 @@ function FormModal({ adults, children, rooms, toggleModal, handleOptions }) {
                     </div>
                 </div>
                 <div className={styles.form__modal__row}>
-                    <p>rooms</p>
+                    <p>Rooms</p>
                     <div className={styles.form__modal__buttons}>
                         <button
                             onClick={() => handleOptions('rooms', 'decrement')}
                             className='btn btn-secondary'
+                            disabled={rooms <= 1}
                         >
                             -
                         </button>

@@ -38,9 +38,9 @@ function Header() {
 
                 </section>
                 <section className='container'>
-                    {width > 640 && <div>
-                        <h1>Find your next stay</h1>
-                        <h3>Search low prices on hotels, homes and much more...</h3>
+                    {width > 640 && <div className={styles.header__titles}>
+                        <h1 className={styles.header__title}>Find your next stay</h1>
+                        <h3 className={styles.header__subtitle}>Search low prices on hotels, homes and much more...</h3>
                     </div>}
 
                 </section>

@@ -2,13 +2,35 @@
 
 .form-container {
     background-color: $light-gray;
-    padding: 1rem 0;
+
+    @media screen and (min-width: 860px) {
+        position: relative;
+        margin-top: -2.2rem;
+        background-color: transparent;
+    }
 }
 
 .form {
     background-color: $accent;
-    padding: 0.4rem;
     margin-bottom: 1rem;
+    padding: 0.3rem;
+
+    @media screen and (min-width: 860px) {
+        max-width: 1240px;
+        margin: 0 auto;
+        height: 7vh;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    &__row {
+        width: 100%;
+
+        @media screen and (min-width: 860px) {
+            width: 100%;
+        }
+    }
 
     &__text {
         margin-bottom: 1rem;
@@ -23,7 +45,12 @@
         border: none;
         border-radius: 4px;
         outline: none;
-        padding: 0.3rem 0.7rem;
+        padding: 0.3rem;
+
+        @media screen and (min-width: 860px) {
+            height: 6vh;
+            margin-bottom: 0;
+        }
     }
 
     &__wrapper {
@@ -37,6 +64,11 @@
         color: $white;
         width: 100%;
         border-radius: 4px;
+
+        @media screen and (min-width: 860px) {
+            width: 20%;
+            height: 6vh;
+        }
     }
 
     &__container {
@@ -47,6 +79,11 @@
         border-radius: 4px;
         cursor: pointer;
         padding: 0 0.3rem;
+
+        @media screen and (min-width: 860px) {
+            margin-bottom: 0;
+            height: 6vh;
+        }
     }
 
     &__container div:not(:first-child) {

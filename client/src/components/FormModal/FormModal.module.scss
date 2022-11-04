@@ -12,16 +12,29 @@
     flex-direction: column;
     justify-content: flex-end;
 
+    @media screen and (min-width: 860px) {
+        width: 30%;
+        height: 25vh;
+        top: 100%;
+        left: 50%;
+        overflow: hidden;
+        box-shadow: $shadow-1;
+    }
+
     &__context {
         padding: 2rem;
         background-color: $white;
         height: 60vh;
+        @media screen and (min-width: 860px) {
+            padding: 0.5rem;
+        }
     }
 
     &__row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         justify-items: center;
+        margin-bottom: 0.2rem;
     }
 
     &__buttons {
@@ -41,4 +54,8 @@
     background-color: $primary-light;
     color: $white;
     margin-top: 2rem;
+
+    @media screen and (min-width: 860px) {
+        margin-top: 0.5rem;
+    }
 }

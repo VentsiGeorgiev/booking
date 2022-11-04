@@ -37,4 +37,11 @@ a {
 .btn-secondary {
     background-color: $white;
     color: $primary-light;
+    border: 1px solid $primary-light;
+}
+
+.btn-secondary:disabled {
+    border: 1px solid $gray;
+    color: gray;
+    background-color: $light-gray;
 }

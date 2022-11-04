@@ -24,4 +24,24 @@
         display: flex;
         gap: 1rem;
     }
+
+    &__titles {
+        padding-bottom: 1.4rem;
+
+        @media screen and (min-width: 860px) {
+            padding-bottom: 4rem;
+        }
+    }
+
+    &__title,
+    &__subtitle {
+        color: $white;
+    }
+
+    &__title {
+        font-size: 3.5rem;
+    }
+    &__subtitle {
+        font-size: 1.4rem;
+    }
 }
