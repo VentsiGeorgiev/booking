@@ -1,13 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages';
+import { Header } from './components';
+import { Home, Register } from './pages';
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Home />} />
-            </Routes>
-        </BrowserRouter>
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/register' element={<Register />} />
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 }
 

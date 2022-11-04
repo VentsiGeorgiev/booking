@@ -28,10 +28,21 @@ a {
     cursor: pointer;
     border: transparent;
     padding: 0.3rem 0.7rem;
-    text-transform: capitalize;
     display: inline-block;
     background-color: transparent;
     border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: $primary-light;
+    color: $white;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: $primary;
 }
 
 .btn-secondary {
@@ -44,4 +55,104 @@ a {
     border: 1px solid $gray;
     color: gray;
     background-color: $light-gray;
+}
+
+// # Sign In / Sign Up Form
+.form {
+    width: 100%;
+    margin-bottom: 2rem;
+
+    &__title {
+        margin-bottom: 2rem;
+    }
+
+    &__row {
+        width: 100%;
+        margin-bottom: 0.3rem;
+    }
+    &__label {
+        display: block;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.3rem 0.7rem;
+        outline-color: $primary;
+    }
+
+    @media screen and (min-width: 680px) {
+        &__row {
+            margin-bottom: 0.7rem;
+        }
+    }
+}
+
+.form-wrapper {
+    @media screen and (min-width: 680px) {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+.header-sign {
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 680px) {
+        margin-bottom: 4rem;
+    }
+}
+
+.header-sign h2 {
+    color: $white;
+}
+
+.social {
+    p {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    &__icons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    &__subtitle {
+        text-align: center;
+        color: $primary-light;
+        margin-bottom: 1rem;
+    }
+}
+
+.icon {
+    border: 1px solid $gray;
+    font-size: 4rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.fb-icon {
+    color: #1196f5;
+}
+
+.google-icon {
+    color: rgb(179, 116, 0);
+}
+
+.phone-icon {
+    color: rgb(0, 70, 0);
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.error {
+    color: red;
+    text-align: center;
 }
