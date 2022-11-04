@@ -2,6 +2,7 @@ import { BiUserCircle, BiMenu } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import SearchForm from '../SearchForm/SearchForm';
 
 function Header() {
 
@@ -26,15 +27,26 @@ function Header() {
     );
 
     return (
-        <header className={styles.header}>
-            <section className={`container ${styles.header__wrapper}`}>
-                <div className={styles.header__logo}>Booking.com</div>
-                {width <= 640
-                    ? mobileNavigation
-                    : desktopNavigation
-                }
-            </section>
-        </header>
+        <>
+            <header className={styles.header}>
+                <section className={`container ${styles.header__wrapper}`}>
+                    <div className={styles.header__logo}>Booking.com</div>
+                    {width <= 640
+                        ? mobileNavigation
+                        : desktopNavigation
+                    }
+
+                </section>
+                <section className='container'>
+                    {width > 640 && <div>
+                        <h1>Find your next stay</h1>
+                        <h3>Search low prices on hotels, homes and much more...</h3>
+                    </div>}
+
+                </section>
+            </header>
+            <SearchForm />
+        </>
     );
 }
 
