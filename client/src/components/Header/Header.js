@@ -21,7 +21,7 @@ function Header() {
                 <Link className='btn btn-secondary' to='/register'>Register</Link>
             </li>
             <li className={styles.header__link}>
-                <Link className='btn btn-secondary' to='/sign-in'>sign-in</Link>
+                <Link className='btn btn-secondary' to='/sign-in'>Sign in</Link>
             </li>
         </ul>
     );
