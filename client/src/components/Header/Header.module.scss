@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+.header {
+    background-color: $primary;
+
+    &__wrapper {
+        height: 6vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $white;
+    }
+
+    &__logo {
+        font-size: 1.3rem;
+    }
+
+    &__icons {
+        font-size: 1.5rem;
+        display: flex;
+        gap: 1rem;
+    }
+}
