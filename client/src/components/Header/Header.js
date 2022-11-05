@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import SearchForm from '../SearchForm/SearchForm';
+import { useAuthContext } from '../../context/auth/authContext';
 
 function Header() {
 
+    const { user } = useAuthContext();
     const { width } = useWindowDimensions();
 
     const mobileNavigation = (
@@ -17,12 +19,23 @@ function Header() {
 
     const desktopNavigation = (
         <ul className={styles.header__links}>
-            <li className={styles.header__link}>
-                <Link className='btn btn-secondary' to='/register'>Register</Link>
-            </li>
-            <li className={styles.header__link}>
-                <Link className='btn btn-secondary' to='/sign-in'>Sign in</Link>
-            </li>
+            {user === null
+                ?
+                <>
+                    <li className={styles.header__link}>
+                        <Link className='btn btn-secondary' to='/register'>Register</Link>
+                    </li>
+                    <li className={styles.header__link}>
+                        <Link className='btn btn-secondary' to='/sign-in'>Sign in</Link>
+                    </li>
+                </>
+                :
+                <>
+                    <li className={styles.header__link}>
+                        <Link to='/account'>Your account</Link>
+                    </li>
+                </>
+            }
         </ul>
     );
 

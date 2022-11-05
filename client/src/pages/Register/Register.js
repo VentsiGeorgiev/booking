@@ -1,19 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillFacebook, AiFillGoogleSquare } from 'react-icons/ai';
 import { MdMobileScreenShare } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../context/auth/authContext';
+import { Spinner } from '../../components';
+const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function Register() {
 
-    const { registerUser, isSuccess } = useAuthContext();
+    const { registerUser, isSuccess, isLoading, isError, error: errorMessage } = useAuthContext();
+    const navigate = useNavigate();
 
-    const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repass, setRepass] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+
+        if (isSuccess) {
+            navigate('/');
+        }
+
+    }, [isSuccess, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,6 +47,10 @@ function Register() {
 
     };
 
+    if (isLoading) {
+        return <Spinner />;
+    }
+
 
     return (
         <>
@@ -47,6 +61,7 @@ function Register() {
                     </Link>
                 </div>
             </div>
+            {isError && <p className='error'>{errorMessage}</p>}
             <section className='container form-wrapper'>
 
                 <form onSubmit={handleSubmit} className='form'>
@@ -61,6 +76,7 @@ function Register() {
                         </label>
                         <input
                             type="email"
+                            name='email'
                             className='form__input'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +91,7 @@ function Register() {
                         </label>
                         <input
                             type="password"
+                            name='password'
                             className='form__input'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +105,8 @@ function Register() {
                             Repeat Password
                         </label>
                         <input
-                            type="repass"
+                            type="password"
+                            name="repass"
                             className='form__input'
                             value={repass}
                             onChange={(e) => setRepass(e.target.value)}

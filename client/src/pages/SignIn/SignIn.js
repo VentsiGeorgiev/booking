@@ -50,6 +50,7 @@ function SignIn() {
                         </label>
                         <input
                             type="email"
+                            name='email'
                             className='form__input'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +65,7 @@ function SignIn() {
                         </label>
                         <input
                             type="password"
+                            name="password"
                             className='form__input'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
