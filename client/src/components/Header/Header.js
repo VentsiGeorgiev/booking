@@ -43,22 +43,17 @@ function Header() {
         <>
             <header className={styles.header}>
                 <section className={`container ${styles.header__wrapper}`}>
-                    <div className={styles.header__logo}>Booking.com</div>
+                    <Link to='/'>
+                        <h2>Booking.com</h2>
+                    </Link>
                     {width <= 640
                         ? mobileNavigation
                         : desktopNavigation
                     }
 
                 </section>
-                <section className='container'>
-                    {width > 640 && <div className={styles.header__titles}>
-                        <h1 className={styles.header__title}>Find your next stay</h1>
-                        <h3 className={styles.header__subtitle}>Search low prices on hotels, homes and much more...</h3>
-                    </div>}
 
-                </section>
             </header>
-            <SearchForm />
         </>
     );
 }

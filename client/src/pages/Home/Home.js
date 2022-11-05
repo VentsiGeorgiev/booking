@@ -1,9 +1,11 @@
-import { Header } from '../../components';
+import { Header, SearchForm } from '../../components';
 
 function Home() {
     return (
         <>
             <Header />
+
+            <SearchForm />
             <div>Home</div>
         </>
     );
