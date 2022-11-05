@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { AiFillFacebook, AiFillGoogleSquare } from 'react-icons/ai';
 import { MdMobileScreenShare } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../context/auth/authContext';
 
 function Register() {
+
+    const { registerUser, isSuccess } = useAuthContext();
 
     const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -28,6 +31,9 @@ function Register() {
             setError('Invalid email');
             return;
         }
+
+
+        registerUser({ email, password, repass });
 
     };
 
