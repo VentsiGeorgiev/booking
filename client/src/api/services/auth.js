@@ -7,7 +7,7 @@ export async function register(user) {
 }
 
 export async function login(user) {
-    const result = await post('/api/v1/auth/login', user);
+    const result = await post('/api/auth/login', user);
 
     return result;
 }

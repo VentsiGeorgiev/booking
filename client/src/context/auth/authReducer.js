@@ -17,9 +17,11 @@ const reducer = (state, action) => {
         case REGISTER_USER_SUCCESS:
             return {
                 ...state,
+                user: action.payload,
                 isLoading: false,
                 isSuccess: true,
-                user: action.payload,
+                isError: false,
+                error: ''
             };
         case REGISTER_USER_REJECTED:
             return {
@@ -37,9 +39,11 @@ const reducer = (state, action) => {
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
+                user: action.payload,
                 isLoading: false,
                 isSuccess: true,
-                user: action.payload,
+                isError: false,
+                error: '',
             };
         case LOGIN_USER_REJECTED:
             return {

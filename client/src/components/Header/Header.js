@@ -31,8 +31,8 @@ function Header() {
                 </>
                 :
                 <>
-                    <li className={styles.header__link}>
-                        <Link to='/account'>Your account</Link>
+                    <li>
+                        <Link className={styles.header__link} to='/account'>Your account</Link>
                     </li>
                 </>
             }
@@ -43,7 +43,7 @@ function Header() {
         <>
             <header className={styles.header}>
                 <section className={`container ${styles.header__wrapper}`}>
-                    <Link to='/'>
+                    <Link className={styles.header__link} to='/'>
                         <h2>Booking.com</h2>
                     </Link>
                     {width <= 640

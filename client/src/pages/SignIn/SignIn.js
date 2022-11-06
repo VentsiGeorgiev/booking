@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillFacebook, AiFillGoogleSquare } from 'react-icons/ai';
-import { MdMobileScreenShare } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { MdMobileScreenShare, MdSip } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+import { Spinner } from '../../components';
+import { useAuthContext } from '../../context/auth/authContext';
+
+const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function SignIn() {
 
-    const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const { loginUser, isLoading, isSuccess, isError, error: errorMessage } = useAuthContext();
+    const navigate = useNavigate();
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate('/');
+        }
+    }, [isSuccess, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,13 +30,19 @@ function SignIn() {
             setError('All fields are required');
             return;
         }
+        // [TODO] Uncomment 
+        // if (!email.match(EMAIL_PATTERN)) {
+        //     setError('Invalid email');
+        //     return;
+        // }
 
-        if (!email.match(EMAIL_PATTERN)) {
-            setError('Invalid email');
-            return;
-        }
+        loginUser({ email, password });
 
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
 
     return (
@@ -37,7 +55,7 @@ function SignIn() {
                 </div>
             </div>
             <section className='container form-wrapper'>
-
+                {isError && <p>{errorMessage}</p>}
                 <form onSubmit={handleSubmit} className='form'>
                     <h2 className='form__title'>Sign in or create an account</h2>
                     {error && <p className='error'>{error}</p>}
@@ -48,8 +66,9 @@ function SignIn() {
                         >
                             Email address
                         </label>
+                        {/* [TODO] Change type back to email */}
                         <input
-                            type="email"
+                            type="text"
                             name='email'
                             className='form__input'
                             value={email}

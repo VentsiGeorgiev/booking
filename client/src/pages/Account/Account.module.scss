@@ -1,0 +1,68 @@
+@import '../../styles/variables';
+
+.section__heading {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 680px) {
+        width: 70%;
+    }
+}
+
+.settings {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media screen and (min-width: 680px) {
+        grid-template-columns: 1fr 1fr;
+        width: 70%;
+    }
+
+    &__card {
+        display: flex;
+        gap: 1rem;
+        border: 1px solid $gray;
+        border-radius: 6px;
+        padding: 0.7rem;
+        min-height: 12vh;
+
+        &__icon {
+            font-size: 1.5rem;
+            background-color: $light-gray;
+            width: 40px;
+            height: 40px;
+            padding: 0.5rem;
+            border-radius: 50%;
+            color: $font;
+        }
+
+        &__details {
+            &__title {
+                color: $font;
+                margin-bottom: 0.3rem;
+            }
+
+            &__text {
+                font-size: 13px;
+                color: $font;
+                margin-bottom: 0.3rem;
+            }
+
+            &__link {
+                display: inline-block;
+                font-size: 13px;
+                color: $primary-light;
+                border-bottom: 1px solid $primary-light;
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        &:hover {
+            color: $primary-light;
+        }
+    }
+}
