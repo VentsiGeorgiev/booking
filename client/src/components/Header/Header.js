@@ -32,7 +32,7 @@ function Header() {
                 :
                 <>
                     <li>
-                        <Link className={styles.header__link} to='/account'>Your account</Link>
+                        <Link className={styles.header__link} to='/mysettings'>Your account</Link>
                     </li>
                 </>
             }

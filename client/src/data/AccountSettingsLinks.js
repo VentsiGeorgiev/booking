@@ -11,7 +11,7 @@ export const accountSettingsData = [
         title: 'Personal details',
         text: 'Update your information and find out how it\'s used.',
         linkText: 'Manage personal details',
-        link: 'mysettings'
+        link: 'personal'
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ export const accountSettingsData = [
         title: 'Preferences',
         text: 'Change your language, currency and accessibility requirements.',
         linkText: 'Manage preferences',
-        link: 'mysettings'
+        link: 'preferences'
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ export const accountSettingsData = [
         title: 'Security',
         text: 'Adjust your security settings and set up two-factor authentication.',
         linkText: 'Manage account security',
-        link: 'mysettings'
+        link: 'security'
     },
     {
         id: 4,
@@ -35,7 +35,7 @@ export const accountSettingsData = [
         title: 'Payment details',
         text: 'Securely add or remove payment methods to make it easier when you book.',
         linkText: 'Manage payment details',
-        link: 'mysettings'
+        link: 'payment'
     },
     {
         id: 5,
@@ -43,7 +43,7 @@ export const accountSettingsData = [
         title: 'Email notifications',
         text: 'Decide what you want to be notified about, and unsubscribe from what you don\'t.',
         linkText: 'Manage notifications',
-        link: 'mysettings'
+        link: 'email'
     },
     {
         id: 6,
@@ -51,6 +51,6 @@ export const accountSettingsData = [
         title: 'Other travellers',
         text: 'Add or edit information about the people you\'re travelling with.',
         linkText: 'Manage travellers',
-        link: 'mysettings'
+        link: 'travellers'
     },
 ];
