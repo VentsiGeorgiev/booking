@@ -1,6 +1,5 @@
 import { Header } from '../../components';
 import styles from './Account.module.scss';
-import { MdOutlinePersonAddAlt } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { accountSettingsData } from '../../data/AccountSettingsLinks';
 

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Account, Home, Register, SignIn } from './pages';
+import RequireAuth from './utils/RequireAuth';
 
 function App() {
     return (
@@ -9,7 +10,10 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/sign-in' element={<SignIn />} />
-                    <Route path='/account' element={<Account />} />
+
+                    <Route element={<RequireAuth />}>
+                        <Route path='/account' element={<Account />} />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </>

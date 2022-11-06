@@ -12,8 +12,10 @@ import {
 
 const AuthContext = createContext();
 
+const user = JSON.parse(localStorage.getItem('user'));
+
 const initialState = {
-    user: null,
+    user: user ? user : null,
     isLoading: false,
     isSuccess: false,
     isError: false,
@@ -38,7 +40,7 @@ const AuthProvider = ({ children }) => {
         dispatch({ type: LOGIN_USER_PENDING });
         try {
             const response = await login(user);
-            dispatch({ type: LOGIN_USER_SUCCESS, payload: response });
+            dispatch({ type: LOGIN_USER_SUCCESS, payload: response._id });
         } catch (error) {
             dispatch({ type: LOGIN_USER_REJECTED, payload: error.message });
         }

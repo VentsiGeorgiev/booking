@@ -19,6 +19,9 @@
 
     @media screen and (min-width: 680px) {
         grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
         width: 70%;
     }
 
@@ -29,6 +32,13 @@
         border-radius: 6px;
         padding: 0.7rem;
         min-height: 12vh;
+
+        @media screen and (min-width: 680px) {
+            min-height: 16vh;
+        }
+        @media screen and (min-width: 1024px) {
+            min-height: 12vh;
+        }
 
         &__icon {
             font-size: 1.5rem;
