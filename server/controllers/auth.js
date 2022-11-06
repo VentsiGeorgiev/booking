@@ -82,8 +82,27 @@ const login = async (req, res) => {
     }
 };
 
+const update = async (req, res) => {
+
+    try {
+        const { id } = req.body;
+        const userImage = req.file.originalname;
+
+        const user = await User.findById(id);
+        user.userImage = userImage;
+
+        const updatedUser = await user.save();
+        res.json(updatedUser);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+};
+
 
 module.exports = {
     register,
     login,
+    update
 };
