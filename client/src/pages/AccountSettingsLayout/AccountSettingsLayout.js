@@ -15,7 +15,7 @@ function AccountSettingsLayout() {
                 {width > 800 && (
                     <aside className={styles.aside}>
                         {accountSettingsData.map((data) => (
-                            <li>
+                            <li key={data.id}>
                                 <Link className={styles.aside__link} to={`${data.link}`}>
                                     <div className={styles.aside__box}>
                                         <i className={styles.aside__box__icon}>{data.icon}</i>

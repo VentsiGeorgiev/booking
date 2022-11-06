@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import reducer from './authReducer';
-import { register, login } from '../../api/services/auth';
+import { register, login, updateUserImage } from '../../api/services/auth';
 import {
     LOGIN_USER_PENDING,
     LOGIN_USER_REJECTED,
@@ -8,6 +8,9 @@ import {
     REGISTER_USER_PENDING,
     REGISTER_USER_REJECTED,
     REGISTER_USER_SUCCESS,
+    UPDATE_USER_PENDING,
+    UPDATE_USER_REJECTED,
+    UPDATE_USER_SUCCESS,
 } from './authActions';
 
 const AuthContext = createContext();
@@ -46,12 +49,24 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const updateUser = async (user) => {
+        dispatch({ type: UPDATE_USER_PENDING });
+        try {
+
+            const response = await updateUserImage(user);
+            dispatch({ type: UPDATE_USER_SUCCESS, payload: response });
+        } catch (error) {
+            dispatch({ type: UPDATE_USER_REJECTED, payload: error.message });
+        }
+    };
+
     return <AuthContext.Provider
         value={{
             ...state,
             dispatch,
             registerUser,
             loginUser,
+            updateUser
         }}
     >
         {children}

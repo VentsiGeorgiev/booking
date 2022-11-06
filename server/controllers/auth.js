@@ -30,6 +30,7 @@ const register = async (req, res) => {
             res.status(201).json({
                 _id: user._id,
                 email: user.email,
+                userImage: user.userImage,
                 token: user.createJWT(),
             });
         } else {
@@ -71,6 +72,7 @@ const login = async (req, res) => {
             res.status(200).json({
                 _id: user._id,
                 email: user.email,
+                userImage: user.userImage,
                 token: user.createJWT(),
             });
         }
@@ -86,13 +88,18 @@ const update = async (req, res) => {
 
     try {
         const { id } = req.body;
-        const userImage = req.file.originalname;
+        // const userImage = req.file.originalname;
+        const userImg = req.file.filename;
+
 
         const user = await User.findById(id);
-        user.userImage = userImage;
+        user.userImage = userImg;
 
         const updatedUser = await user.save();
-        res.json(updatedUser);
+
+        const { userImage } = updatedUser;
+
+        res.json(userImage);
 
     } catch (error) {
         res.status(500).json({ message: error.message });

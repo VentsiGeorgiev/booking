@@ -4,7 +4,10 @@ import {
     LOGIN_USER_SUCCESS,
     REGISTER_USER_PENDING,
     REGISTER_USER_REJECTED,
-    REGISTER_USER_SUCCESS
+    REGISTER_USER_SUCCESS,
+    UPDATE_USER_PENDING,
+    UPDATE_USER_REJECTED,
+    UPDATE_USER_SUCCESS
 } from './authActions';
 
 const reducer = (state, action) => {
@@ -46,6 +49,28 @@ const reducer = (state, action) => {
                 error: '',
             };
         case LOGIN_USER_REJECTED:
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: false,
+                isError: true,
+                error: action.payload,
+            };
+        case UPDATE_USER_PENDING:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                user: { ...state.user, userImage: action.payload },
+                isLoading: false,
+                isSuccess: true,
+                isError: false,
+                error: '',
+            };
+        case UPDATE_USER_REJECTED:
             return {
                 ...state,
                 isLoading: false,
