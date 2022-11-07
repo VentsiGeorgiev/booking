@@ -36,11 +36,11 @@ function Register() {
             setError('Passwords don\'t match');
             return;
         }
-
-        if (!email.match(EMAIL_PATTERN)) {
-            setError('Invalid email');
-            return;
-        }
+        // [TODO] Uncomment
+        // if (!email.match(EMAIL_PATTERN)) {
+        //     setError('Invalid email');
+        //     return;
+        // }
 
 
         registerUser({ email, password, repass });
@@ -74,8 +74,9 @@ function Register() {
                         >
                             Email address
                         </label>
+                        {/* [TODO] change back to type="email" */}
                         <input
-                            type="email"
+                            type="text"
                             name='email'
                             className='form__input'
                             value={email}

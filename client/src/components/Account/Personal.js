@@ -21,6 +21,9 @@ function Personal() {
         const formData = new FormData();
 
         const id = user.id;
+        if (!userImage) {
+            return;
+        }
 
         formData.append('id', id);
         formData.append('userImage', userImage);
@@ -37,15 +40,12 @@ function Personal() {
                 <div>
                     <h2>Personal details</h2>
                     <p>Update your information and find out how it's used.</p>
-
-                    {user.userImage && user?.userImage
-                        ? <img src={`/uploads/${user?.userImage}`} alt=".." width={50} height={50} />
-                        : <img src='/uploads/avatar.png' alt=".." width={50} height={50} />
-                    }
-
-                    {/* {userImg ? <img src={`/uploads/${userImg}`} alt="..." /> : <img src='/uploads/avatar' alt="..." />} */}
                 </div>
-                <div>
+
+                <div>{user.userImage && user?.userImage
+                    ? <img src={`/uploads/${user?.userImage}`} alt="user" width={50} height={50} />
+                    : <img src='/uploads/userImage.png' alt="user" width={50} height={50} />
+                }
                     <form onSubmit={handleSubmit} encType='multipart/form-data'>
                         <input
                             type='file'
