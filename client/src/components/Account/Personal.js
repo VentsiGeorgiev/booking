@@ -5,7 +5,7 @@ import { AiFillCamera } from 'react-icons/ai';
 
 function Personal() {
 
-    const { updateUser, user, isSuccess } = useAuthContext();
+    const { uploadImage, user, isSuccess, updateUser } = useAuthContext();
 
 
     const [userImage, setUserImage] = useState('');
@@ -35,7 +35,7 @@ function Personal() {
         formData.append('id', id);
         formData.append('userImage', userImage);
 
-        updateUser(formData);
+        uploadImage(formData);
 
         setUserImage('');
 
@@ -43,7 +43,15 @@ function Personal() {
 
     const handleSave = () => {
 
+        const userData = {
+            id: user.id,
+            firstName,
+            lastName
+        };
 
+        updateUser(userData);
+        setFirstName('');
+        setLastName('');
         setIsNameEdit(false);
     };
 
@@ -131,12 +139,14 @@ function Personal() {
 
                 {isNameEdit
                     ? <button
+                        type='button'
                         onClick={handleSave}
                         className={`btn ${styles.settings__save__btn}`}
                     >
                         Save
                     </button>
                     : <button
+                        type='button'
                         className={`btn ${styles.settings__edit}`}
                         onClick={() => setIsNameEdit((prevState) => !prevState)}
                     >

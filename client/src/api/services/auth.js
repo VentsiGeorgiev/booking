@@ -26,7 +26,7 @@ export async function login(user) {
     return data;
 }
 
-export async function updateUserImage(formData) {
+export async function uploadUserImage(formData) {
 
 
     const response = await fetch('/api/auth/update', {
@@ -37,4 +37,18 @@ export async function updateUserImage(formData) {
 
     return result;
 
+}
+
+export async function updateUserData(userData) {
+
+    const result = await put('/api/auth/update-user', userData);
+
+    const data = {
+        id: result._id,
+        userImage: result.userImage,
+        firstName: result.firstName,
+        lastName: result.lastName,
+    };
+
+    return data;
 }

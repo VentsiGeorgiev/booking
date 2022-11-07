@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import reducer from './authReducer';
-import { register, login, updateUserImage } from '../../api/services/auth';
+import { register, login, updateUserData, uploadUserImage } from '../../api/services/auth';
 import {
     LOGIN_USER_PENDING,
     LOGIN_USER_REJECTED,
@@ -8,6 +8,9 @@ import {
     REGISTER_USER_PENDING,
     REGISTER_USER_REJECTED,
     REGISTER_USER_SUCCESS,
+    UPDATE_USER_DATA_PENDING,
+    UPDATE_USER_DATA_REJECTED,
+    UPDATE_USER_DATA_SUCCESS,
     UPDATE_USER_PENDING,
     UPDATE_USER_REJECTED,
     UPDATE_USER_SUCCESS,
@@ -49,14 +52,25 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const updateUser = async (user) => {
+    const uploadImage = async (user) => {
         dispatch({ type: UPDATE_USER_PENDING });
         try {
 
-            const response = await updateUserImage(user);
+            const response = await uploadUserImage(user);
             dispatch({ type: UPDATE_USER_SUCCESS, payload: response });
         } catch (error) {
             dispatch({ type: UPDATE_USER_REJECTED, payload: error.message });
+        }
+    };
+
+    const updateUser = async (user) => {
+        dispatch({ type: UPDATE_USER_DATA_PENDING });
+        try {
+
+            const response = await updateUserData(user);
+            dispatch({ type: UPDATE_USER_DATA_SUCCESS, payload: response });
+        } catch (error) {
+            dispatch({ type: UPDATE_USER_DATA_REJECTED, payload: error.message });
         }
     };
 
@@ -66,7 +80,8 @@ const AuthProvider = ({ children }) => {
             dispatch,
             registerUser,
             loginUser,
-            updateUser
+            uploadImage,
+            updateUser,
         }}
     >
         {children}

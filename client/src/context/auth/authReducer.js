@@ -5,6 +5,9 @@ import {
     REGISTER_USER_PENDING,
     REGISTER_USER_REJECTED,
     REGISTER_USER_SUCCESS,
+    UPDATE_USER_DATA_PENDING,
+    UPDATE_USER_DATA_REJECTED,
+    UPDATE_USER_DATA_SUCCESS,
     UPDATE_USER_PENDING,
     UPDATE_USER_REJECTED,
     UPDATE_USER_SUCCESS
@@ -71,6 +74,29 @@ const reducer = (state, action) => {
                 error: '',
             };
         case UPDATE_USER_REJECTED:
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: false,
+                isError: true,
+                error: action.payload,
+            };
+        case UPDATE_USER_DATA_PENDING:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case UPDATE_USER_DATA_SUCCESS:
+            const userData = action.payload;
+            return {
+                ...state,
+                user: { ...state.user, ...userData },
+                isLoading: false,
+                isSuccess: true,
+                isError: false,
+                error: '',
+            };
+        case UPDATE_USER_DATA_REJECTED:
             return {
                 ...state,
                 isLoading: false,
