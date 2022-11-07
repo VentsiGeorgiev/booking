@@ -109,6 +109,21 @@ const update = async (req, res) => {
 
 const updateUser = async (req, res) => {
 
+    try {
+        const { id, firstName, lastName } = req.body;
+
+        const user = await User.findById(id).select('-password');
+        user.firstName = firstName;
+        user.lastName = lastName;
+
+        const updatedUser = await user.save();
+
+        res.json(updatedUser);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
 };
 
 

@@ -14,7 +14,13 @@ const UserSchema = new mongoose.Schema({
     },
     userImage: {
         type: String
-    }
+    },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
 },
     {
         timestamps: true,
