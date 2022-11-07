@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
         dispatch({ type: LOGIN_USER_PENDING });
         try {
             const response = await login(user);
-            dispatch({ type: LOGIN_USER_SUCCESS, payload: response._id });
+            dispatch({ type: LOGIN_USER_SUCCESS, payload: response });
         } catch (error) {
             dispatch({ type: LOGIN_USER_REJECTED, payload: error.message });
         }

@@ -23,7 +23,7 @@ export async function login(user) {
 
     localStorage.setItem('user', JSON.stringify(data));
 
-    return result;
+    return data;
 }
 
 export async function updateUserImage(formData) {

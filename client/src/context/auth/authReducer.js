@@ -42,7 +42,7 @@ const reducer = (state, action) => {
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
-                user: { id: action.payload },
+                user: action.payload,
                 isLoading: false,
                 isSuccess: true,
                 isError: false,
