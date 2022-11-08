@@ -1,47 +1,29 @@
 const User = require('../models/User.js');
+const { registerUser, loginUser, updateUser } = require('../services/auth.js');
 
 const register = async (req, res) => {
     try {
         const { email, password, repass } = req.body;
 
         if (!email || !password || !repass) {
-            res.status(400);
             throw new Error('All fields are required');
         }
 
+        // [TODO] Uncomment
         // if (password.trim().length < 6) {
         //     throw new Error('Password must be at least 6 characters long');
         // }
+
         // if (password.trim() !== repass.trim()) {
         //     throw new Error('Passwords don\'t match');
         // }
 
-        const userExists = await User.findOne({ email });
-        if (userExists) {
-            throw new Error('User Already exists');
-        }
+        const result = await registerUser(email, password);
 
-        const user = await User.create({
-            email,
-            password,
-        });
-
-        if (user) {
-            res.status(201).json({
-                _id: user._id,
-                email: user.email,
-                userImage: user.userImage,
-                token: user.createJWT(),
-            });
-        } else {
-            res.status(400);
-            throw new Error('Invalid user data');
-        }
-
+        res.status(200).json(result);
 
     } catch (error) {
         res.status(500).json({ message: error.message });
-        console.log(error);
     }
 };
 
@@ -49,42 +31,27 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        if (!email || !password) {
+        if (!email.trim() || !password.trim()) {
             res.status(400);
             throw new Error('All fields are required');
         }
+
+        // [TODO] Uncomment
         // if (password.trim().length < 6) {
         //     throw new Error('Password must be at least 6 characters long');
         // }
 
-        const user = await User.findOne({ email });
-        if (!user) {
-            throw new Error('Invalid email or password');
-        }
+        const result = await loginUser(email, password);
 
-        const isCorrectPassword = await user.comparePasswords(password);
-
-        if (!isCorrectPassword) {
-            throw new Error('Invalid email or password');
-        }
-
-        if (user) {
-            res.status(200).json({
-                _id: user._id,
-                email: user.email,
-                userImage: user.userImage,
-                token: user.createJWT(),
-            });
-        }
+        res.status(200).json(result);
 
 
     } catch (error) {
         res.status(500).json({ message: error.message });
-        console.log(error);
     }
 };
 
-const update = async (req, res) => {
+const uploadImage = async (req, res) => {
 
     try {
         const { id } = req.body;
@@ -107,18 +74,19 @@ const update = async (req, res) => {
 
 };
 
-const updateUser = async (req, res) => {
+const update = async (req, res) => {
 
     try {
         const { id, firstName, lastName } = req.body;
 
-        const user = await User.findById(id).select('-password');
-        user.firstName = firstName;
-        user.lastName = lastName;
+        const userData = {
+            firstName,
+            lastName,
+        };
 
-        const updatedUser = await user.save();
+        const result = await updateUser(id, userData);
 
-        res.json(updatedUser);
+        res.json(result);
 
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -130,6 +98,6 @@ const updateUser = async (req, res) => {
 module.exports = {
     register,
     login,
+    uploadImage,
     update,
-    updateUser,
 };
