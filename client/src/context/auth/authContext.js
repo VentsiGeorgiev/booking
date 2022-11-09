@@ -11,9 +11,9 @@ import {
     UPDATE_USER_DATA_PENDING,
     UPDATE_USER_DATA_REJECTED,
     UPDATE_USER_DATA_SUCCESS,
-    UPDATE_USER_PENDING,
-    UPDATE_USER_REJECTED,
-    UPDATE_USER_SUCCESS,
+    UPDATE_USER_IMAGE_PENDING,
+    UPDATE_USER_IMAGE_REJECTED,
+    UPDATE_USER_IMAGE_SUCCESS,
 } from './authActions';
 
 const AuthContext = createContext();
@@ -53,20 +53,19 @@ const AuthProvider = ({ children }) => {
     };
 
     const uploadImage = async (user) => {
-        dispatch({ type: UPDATE_USER_PENDING });
+        dispatch({ type: UPDATE_USER_IMAGE_PENDING });
         try {
 
             const response = await uploadUserImage(user);
-            dispatch({ type: UPDATE_USER_SUCCESS, payload: response });
+            dispatch({ type: UPDATE_USER_IMAGE_SUCCESS, payload: response });
         } catch (error) {
-            dispatch({ type: UPDATE_USER_REJECTED, payload: error.message });
+            dispatch({ type: UPDATE_USER_IMAGE_REJECTED, payload: error.message });
         }
     };
 
     const updateUser = async (user) => {
         dispatch({ type: UPDATE_USER_DATA_PENDING });
         try {
-
             const response = await updateUserData(user);
             dispatch({ type: UPDATE_USER_DATA_SUCCESS, payload: response });
         } catch (error) {

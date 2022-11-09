@@ -8,9 +8,9 @@ import {
     UPDATE_USER_DATA_PENDING,
     UPDATE_USER_DATA_REJECTED,
     UPDATE_USER_DATA_SUCCESS,
-    UPDATE_USER_PENDING,
-    UPDATE_USER_REJECTED,
-    UPDATE_USER_SUCCESS
+    UPDATE_USER_IMAGE_PENDING,
+    UPDATE_USER_IMAGE_REJECTED,
+    UPDATE_USER_IMAGE_SUCCESS,
 } from './authActions';
 
 const reducer = (state, action) => {
@@ -59,12 +59,12 @@ const reducer = (state, action) => {
                 isError: true,
                 error: action.payload,
             };
-        case UPDATE_USER_PENDING:
+        case UPDATE_USER_IMAGE_PENDING:
             return {
                 ...state,
                 isLoading: true
             };
-        case UPDATE_USER_SUCCESS:
+        case UPDATE_USER_IMAGE_SUCCESS:
             return {
                 ...state,
                 user: { ...state.user, userImage: action.payload },
@@ -73,7 +73,7 @@ const reducer = (state, action) => {
                 isError: false,
                 error: '',
             };
-        case UPDATE_USER_REJECTED:
+        case UPDATE_USER_IMAGE_REJECTED:
             return {
                 ...state,
                 isLoading: false,
