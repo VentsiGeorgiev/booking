@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Personal, Preferences } from './components';
-import { Account, Home, Register, SignIn, AccountSettingsLayout } from './pages';
+import { Preferences } from './components';
+import { Account, Home, Register, SignIn, AccountSettingsLayout, PersonalDetails } from './pages';
 import RequireAuth from './utils/RequireAuth';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
 
                         <Route path='mysettings' element={<AccountSettingsLayout />} >
-                            <Route path='personal' element={<Personal />} />
+                            <Route path='personal' element={<PersonalDetails />} />
                             <Route path='preferences' element={<Preferences />} />
                         </Route>
 

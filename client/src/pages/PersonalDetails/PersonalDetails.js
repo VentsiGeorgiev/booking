@@ -1,45 +1,17 @@
 import { useState } from 'react';
 import { useAuthContext } from '../../context/auth/authContext';
-import styles from './Account.module.scss';
-import { AiFillCamera } from 'react-icons/ai';
+import styles from './PersonalDetails.module.scss';
+import { UserImageForm } from '../../components/PersonalDetailsShared';
 
-function Personal() {
+function PersonalDetails() {
 
     const { uploadImage, user, isSuccess, updateUser } = useAuthContext();
-
-
-    const [userImage, setUserImage] = useState('');
 
     const [isNameEdit, setIsNameEdit] = useState(false);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-
-    const handlePhoto = (e) => {
-        setUserImage(e.target.files[0]);
-    };
-
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-
-        const id = user.id;
-        if (!userImage) {
-            return;
-        }
-
-        formData.append('id', id);
-        formData.append('userImage', userImage);
-
-        uploadImage(formData);
-
-        setUserImage('');
-
-    };
 
     const handleSave = () => {
 
@@ -57,45 +29,8 @@ function Personal() {
 
     return (
         <section>
-            <div className={styles.header}>
-                <div>
-                    <h2>Personal details</h2>
-                    <p>Update your information and find out how it's used.</p>
-                </div>
+            <UserImageForm />
 
-                <div className={styles.avatar}>
-
-                    {user.userImage && user?.userImage
-                        ? <img src={`/uploads/${user?.userImage}`} alt="user" className={styles.avatar__image} />
-                        : <img src='/uploads/userImage.png' alt="user" className={styles.avatar__image} />
-                    }
-
-                    <form onSubmit={handleSubmit} encType='multipart/form-data'>
-                        <label
-                            htmlFor='image-upload'
-                            className={styles.avatar__label}
-                        >
-                            <AiFillCamera />
-
-                        </label>
-                        <input
-                            id='image-upload'
-                            type='file'
-                            name='userImage'
-                            accept='.png, .jpg, .jpeg'
-                            onChange={handlePhoto}
-                            className={styles.avatar__input}
-                        />
-                        <button
-                            className={`btn ${styles.avatar__button}`}
-                            disabled={!userImage}
-                        >Save</button>
-                    </form>
-
-
-
-                </div>
-            </div>
 
             <div className={styles.settings}>
                 <div className={styles.settings__text}>
@@ -162,4 +97,4 @@ function Personal() {
     );
 }
 
-export default Personal;
+export default PersonalDetails;
