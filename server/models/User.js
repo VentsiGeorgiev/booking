@@ -21,6 +21,9 @@ const UserSchema = new mongoose.Schema({
     lastName: {
         type: String
     },
+    displayName: {
+        type: String
+    }
 },
     {
         timestamps: true,
