@@ -9,6 +9,4 @@ router.route('/login').post(login);
 router.put('/update', upload.single('userImage'), uploadImage);
 router.put('/update-user', update);
 
-
-
 module.exports = router;

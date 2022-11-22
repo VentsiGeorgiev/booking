@@ -14,7 +14,7 @@ function UserNameForm() {
     const handleSave = () => {
 
         const userData = {
-            id: user._id,
+            id: user.id,
             firstName,
             lastName
         };

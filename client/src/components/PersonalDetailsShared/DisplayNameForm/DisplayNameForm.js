@@ -12,7 +12,7 @@ function DisplayNameForm() {
     const handleSave = () => {
 
         const userData = {
-            id: user._id,
+            id: user.id,
             displayName,
         };
 
