@@ -152,3 +152,29 @@ li {
     color: red;
     text-align: center;
 }
+
+// User profile data forms
+
+.form__row {
+    position: relative;
+}
+
+.form__error__message {
+    font-size: 12px;
+    color: $red;
+}
+
+.form__input__error {
+    border: 1px solid $red;
+}
+
+.color__red {
+    color: $red;
+}
+
+.form__error_icon {
+    position: absolute;
+    top: 38%;
+    right: 2%;
+    color: $red;
+}
