@@ -38,10 +38,18 @@ async function updateUser(id, userData) {
 
     const user = await User.findById(id).select('-password');
 
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.displayName = displayName;
-    user.phoneNumber = phoneNumber;
+    if (firstName) {
+        user.firstName = firstName;
+    }
+    if (lastName) {
+        user.lastName = lastName;
+    }
+    if (displayName) {
+        user.displayName = displayName;
+    }
+    if (phoneNumber) {
+        user.phoneNumber = phoneNumber;
+    }
 
     await user.save();
 
