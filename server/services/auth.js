@@ -34,7 +34,7 @@ async function loginUser(email, password) {
 
 async function updateUser(id, userData) {
 
-    const { firstName, lastName, displayName, phoneNumber } = userData;
+    const { firstName, lastName, displayName, phoneNumber, dateOfBirth } = userData;
 
     const user = await User.findById(id).select('-password');
 
@@ -49,6 +49,9 @@ async function updateUser(id, userData) {
     }
     if (phoneNumber) {
         user.phoneNumber = phoneNumber;
+    }
+    if (dateOfBirth) {
+        user.dateOfBirth = dateOfBirth;
     }
 
     await user.save();

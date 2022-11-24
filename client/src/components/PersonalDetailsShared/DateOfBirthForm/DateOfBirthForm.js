@@ -17,34 +17,36 @@ function DateOfBirthForm() {
     const [year, setYear] = useState('');
     const [yearError, setYearError] = useState('');
 
-    const [isFormValid, setIsFormValid] = useState(true);
-
     const handleSave = () => {
 
         if (day.trim() === '') {
             setDayError('Please enter your birthday');
-            setIsFormValid(false);
+            return;
+        } else {
+            setDayError('');
         }
+
         if (month.trim() === '') {
             setMonthError('Please enter the month you were born');
-            setIsFormValid(false);;
+            return;
+        } else {
+            setMonthError('');
         }
+
         if (year.trim() === '') {
             setYearError('Please enter the year you were born');
-            setIsFormValid(false);
-        }
-
-        if (isFormValid === false) {
-            console.log('hereee');
             return;
+        } else {
+            setYearError('');
         }
-
 
         const userData = {
             id: user.id,
-            day,
-            month,
-            year
+            dateOfBirth: {
+                day,
+                month,
+                year
+            }
         };
 
         updateUser(userData);
@@ -52,7 +54,6 @@ function DateOfBirthForm() {
         setDay('');
         setYear('');
         setMonth('');
-        setIsFormValid(true);
         setIsNameEdit(false);
     };
 
@@ -100,7 +101,7 @@ function DateOfBirthForm() {
                                 type='text'
                                 name='lastName'
                                 onChange={(e) => setMonth(e.target.value)}
-                                className={yearError && 'form__input__error'}
+                                className={monthError && 'form__input__error'}
                             >
                                 <option value=''>MM</option>
                                 {months.map((month) => (
