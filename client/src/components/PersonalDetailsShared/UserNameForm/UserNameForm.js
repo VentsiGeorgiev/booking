@@ -16,10 +16,10 @@ function UserNameForm() {
 
     const handleSave = () => {
 
-        if (firstName === '') {
+        if (firstName.trim() === '') {
             setFirstNameError('Please enter your first name');
         }
-        if (lastName === '') {
+        if (lastName.trim() === '') {
             setLastNameError('Please enter your last name');
         }
 
@@ -37,6 +37,12 @@ function UserNameForm() {
         setFirstName('');
         setLastName('');
         setIsNameEdit(false);
+    };
+
+    const handleCancel = () => {
+        setFirstNameError('');
+        setLastNameError('');
+        setIsNameEdit((prevState) => !prevState);
     };
 
     return (
@@ -93,7 +99,7 @@ function UserNameForm() {
                 <div className='form__buttons__wrapper'>
                     <button
                         className='form__cancel__btn'
-                        onClick={() => setIsNameEdit((prevState) => !prevState)}
+                        onClick={handleCancel}
                     >Cancel</button>
                     <button
                         type='button'

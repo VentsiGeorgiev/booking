@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuthContext } from '../../../context/auth/authContext';
 import styles from './DisplayNameForm.module.scss';
+import { MdErrorOutline } from 'react-icons/md';
 
 function DisplayNameForm() {
     const { user, updateUser } = useAuthContext();
@@ -8,8 +9,14 @@ function DisplayNameForm() {
     const [isDisplayNameEdit, setIsDisplayNameEdit] = useState(false);
 
     const [displayName, setDisplayName] = useState('');
+    const [displayNameError, setDisplayNameError] = useState('');
 
     const handleSave = () => {
+
+        if (displayName.trim() === '') {
+            setDisplayNameError('Please choose a display name');
+            return;
+        }
 
         const userData = {
             id: user.id,
@@ -19,6 +26,11 @@ function DisplayNameForm() {
         updateUser(userData);
         setDisplayName('');
         setIsDisplayNameEdit(false);
+    };
+
+    const handleCancel = () => {
+        setDisplayNameError('');
+        setIsDisplayNameEdit((prevState) => !prevState);
     };
 
     return (
@@ -34,14 +46,17 @@ function DisplayNameForm() {
                             <label
                                 htmlFor='display-name'
                                 className={`form__label ${styles.settings__name__form__label}`}
-                            >Display name</label>
+                            >Display name <span className='color__red'>*</span></label>
                             <input
                                 id='display-name'
                                 type='text'
                                 name='displayName'
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
+                                className={displayNameError && 'form__input__error'}
                             />
+                            {displayNameError && <MdErrorOutline className='form__error_icon' />}
+                            {displayNameError && <p className='form__error__message'>{displayNameError}</p>}
                         </div>
 
                     </form>
@@ -52,13 +67,21 @@ function DisplayNameForm() {
             </div>
 
             {isDisplayNameEdit
-                ? <button
-                    type='button'
-                    onClick={handleSave}
-                    className={`btn ${styles.settings__save__btn}`}
-                >
-                    Save
-                </button>
+                ?
+                <div className='form__buttons__wrapper'>
+                    <button
+                        className='form__cancel__btn'
+                        onClick={handleCancel}
+                    >Cancel</button>
+                    <button
+                        type='button'
+                        onClick={handleSave}
+                        className={`btn ${styles.settings__save__btn}`}
+                    >
+                        Save
+                    </button>
+
+                </div>
                 : <button
                     type='button'
                     className={`btn ${styles.settings__edit}`}
