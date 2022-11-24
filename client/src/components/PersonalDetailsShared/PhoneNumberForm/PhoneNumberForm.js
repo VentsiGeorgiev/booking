@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuthContext } from '../../../context/auth/authContext';
 import styles from './PhoneNumberForm.module.scss';
+import { MdErrorOutline } from 'react-icons/md';
 
 function PhoneNumberForm() {
     const { user, updateUser } = useAuthContext();
@@ -8,8 +9,21 @@ function PhoneNumberForm() {
     const [isEditing, setIsEditing] = useState(false);
 
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
 
     const handleSave = () => {
+
+        const regex = new RegExp(/^\d+$/);
+
+        if (phoneNumber.trim() === '') {
+            setPhoneNumberError('Please enter your phone number');
+            setPhoneNumber('');
+            return;
+        } else if (!regex.test(phoneNumber)) {
+            setPhoneNumberError('This phone number looks incorrect.');
+            setPhoneNumber('');
+            return;
+        }
 
         const userData = {
             id: user.id,
@@ -18,7 +32,14 @@ function PhoneNumberForm() {
 
         updateUser(userData);
         setPhoneNumber('');
+        setPhoneNumberError('');
         setIsEditing(false);
+    };
+
+    const handleCancel = () => {
+        setPhoneNumber('');
+        setPhoneNumberError('');
+        setIsEditing((prevState) => !prevState);
     };
 
     return (
@@ -41,7 +62,10 @@ function PhoneNumberForm() {
                                 name='phoneNumber'
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
+                                className={phoneNumberError && 'form__input__error'}
                             />
+                            {phoneNumberError && <MdErrorOutline className='form__error_icon' />}
+                            {phoneNumberError && <p className='form__error__message'>{phoneNumberError}</p>}
                         </div>
 
                     </form>
@@ -52,13 +76,21 @@ function PhoneNumberForm() {
             </div>
 
             {isEditing
-                ? <button
-                    type='button'
-                    onClick={handleSave}
-                    className={`btn ${styles.settings__save__btn}`}
-                >
-                    Save
-                </button>
+                ?
+                <div className='form__buttons__wrapper'>
+                    <button
+                        className='form__cancel__btn'
+                        onClick={handleCancel}
+                    >Cancel</button>
+                    <button
+                        type='button'
+                        onClick={handleSave}
+                        className={`btn ${styles.settings__save__btn}`}
+                    >
+                        Save
+                    </button>
+
+                </div>
                 : <button
                     type='button'
                     className={`btn ${styles.settings__edit}`}
