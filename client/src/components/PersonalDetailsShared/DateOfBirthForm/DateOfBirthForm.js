@@ -128,8 +128,8 @@ function DateOfBirthForm() {
                         </div>
 
                     </form>
-                    : (user?.day && user?.month && user?.year)
-                        ? <p>{user.day}-{user.month}-{user.year}</p>
+                    : user?.dateOfBirth
+                        ? <p>{user.dateOfBirth.day}-{user.dateOfBirth.day}-{user.dateOfBirth.day}</p>
                         : <p>Add your date of birth</p>
                 }
             </div>

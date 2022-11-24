@@ -71,6 +71,7 @@ function createSession(user) {
         lastName: user.lastName,
         displayName: user.displayName,
         phoneNumber: user.phoneNumber,
+        dateOfBirth: user.dateOfBirth,
         token: user.createJWT(),
     };
 }
