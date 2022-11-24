@@ -89,13 +89,21 @@ function UserNameForm() {
             </div>
 
             {isNameEdit
-                ? <button
-                    type='button'
-                    onClick={handleSave}
-                    className={`btn ${styles.settings__save__btn}`}
-                >
-                    Save
-                </button>
+                ?
+                <div className='form__buttons__wrapper'>
+                    <button
+                        className='form__cancel__btn'
+                        onClick={() => setIsNameEdit((prevState) => !prevState)}
+                    >Cancel</button>
+                    <button
+                        type='button'
+                        onClick={handleSave}
+                        className={`btn ${styles.settings__save__btn}`}
+                    >
+                        Save
+                    </button>
+
+                </div>
                 : <button
                     type='button'
                     className={`btn ${styles.settings__edit}`}
