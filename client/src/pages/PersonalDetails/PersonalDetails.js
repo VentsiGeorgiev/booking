@@ -1,4 +1,4 @@
-import { DisplayNameForm, PhoneNumberForm, UserImageForm, UserNameForm } from '../../components/PersonalDetailsShared';
+import { DateOfBirthForm, DisplayNameForm, PhoneNumberForm, UserImageForm, UserNameForm } from '../../components/PersonalDetailsShared';
 
 function PersonalDetails() {
 
@@ -8,6 +8,7 @@ function PersonalDetails() {
             <UserNameForm />
             <DisplayNameForm />
             <PhoneNumberForm />
+            <DateOfBirthForm />
         </section >
     );
 }
