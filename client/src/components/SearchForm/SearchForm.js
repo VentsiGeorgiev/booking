@@ -21,8 +21,7 @@ function SearchForm() {
 
 
     const handleOptions = (name, operation) => {
-        console.log(name, operation);
-        console.log(operation === 'increment');
+
         setOptions((prevState) => {
             return {
                 ...prevState,

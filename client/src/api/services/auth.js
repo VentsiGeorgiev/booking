@@ -33,8 +33,6 @@ export async function uploadUserImage(formData) {
     localStorage.removeItem('user');
     localStorage.setItem('user', JSON.stringify(user));
 
-    console.log(result);
-
     return result;
 
 }

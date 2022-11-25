@@ -29,7 +29,10 @@ const UserSchema = new mongoose.Schema({
     },
     dateOfBirth: {
         type: Object
-    }
+    },
+    nationality: {
+        type: String
+    },
 },
     {
         timestamps: true,

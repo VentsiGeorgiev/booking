@@ -77,14 +77,15 @@ const uploadImage = async (req, res) => {
 const update = async (req, res) => {
 
     try {
-        const { id, firstName, lastName, displayName, phoneNumber, dateOfBirth } = req.body;
+        const { id, firstName, lastName, displayName, phoneNumber, dateOfBirth, nationality } = req.body;
 
         const userData = {
             firstName,
             lastName,
             displayName,
             phoneNumber,
-            dateOfBirth
+            dateOfBirth,
+            nationality,
         };
 
         const result = await updateUser(id, userData);

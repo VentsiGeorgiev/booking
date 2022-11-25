@@ -18,7 +18,7 @@ function UserImageForm() {
 
         const formData = new FormData();
 
-        const id = user._id;
+        const id = user.id;
         if (!userImage) {
             return;
         }
