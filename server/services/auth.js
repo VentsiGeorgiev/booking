@@ -34,7 +34,7 @@ async function loginUser(email, password) {
 
 async function updateUser(id, userData) {
 
-    const { firstName, lastName, displayName, phoneNumber, dateOfBirth, nationality } = userData;
+    const { firstName, lastName, displayName, phoneNumber, dateOfBirth, nationality, gender } = userData;
 
     const user = await User.findById(id).select('-password');
 
@@ -56,10 +56,13 @@ async function updateUser(id, userData) {
     if (nationality) {
         user.nationality = nationality;
     }
+    if (gender) {
+        user.gender = gender;
+    }
 
     await user.save();
 
-    return user;
+    return createSession(user);
 
 }
 
@@ -76,6 +79,7 @@ function createSession(user) {
         phoneNumber: user.phoneNumber,
         dateOfBirth: user.dateOfBirth,
         nationality: user.nationality,
+        gender: user.gender,
         token: user.createJWT(),
     };
 }

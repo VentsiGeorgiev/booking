@@ -4,6 +4,7 @@ import DisplayNameForm from './DisplayNameForm/DisplayNameForm';
 import PhoneNumberForm from './PhoneNumberForm/PhoneNumberForm';
 import DateOfBirthForm from './DateOfBirthForm/DateOfBirthForm';
 import NationalityForm from './NationalityForm/NationalityForm';
+import GenderForm from './GenderForm/GenderForm';
 export {
     UserImageForm,
     UserNameForm,
@@ -11,4 +12,5 @@ export {
     PhoneNumberForm,
     DateOfBirthForm,
     NationalityForm,
+    GenderForm,
 };

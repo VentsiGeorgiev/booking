@@ -1,6 +1,7 @@
 import {
     DateOfBirthForm,
     DisplayNameForm,
+    GenderForm,
     NationalityForm,
     PhoneNumberForm,
     UserImageForm,
@@ -17,6 +18,7 @@ function PersonalDetails() {
             <PhoneNumberForm />
             <DateOfBirthForm />
             <NationalityForm />
+            <GenderForm />
         </section >
     );
 }
